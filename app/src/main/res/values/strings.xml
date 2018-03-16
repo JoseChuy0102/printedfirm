@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PrinteDfirm</string>
+    <string name="title_activity_login_frida">LoginFrida</string>
 </resources>
