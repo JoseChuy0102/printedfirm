@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/PrinteDfirm.iml" filepath="$PROJECT_DIR$/PrinteDfirm.iml" />
       <module fileurl="file://C:\Users\Equis\AndroidStudioProjects\printedfirm\PrinteDfirm.iml" filepath="C:\Users\Equis\AndroidStudioProjects\printedfirm\PrinteDfirm.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://C:\Users\Equis\AndroidStudioProjects\printedfirm\app\app.iml" filepath="C:\Users\Equis\AndroidStudioProjects\printedfirm\app\app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/printedfirm.iml" filepath="$PROJECT_DIR$/.idea/printedfirm.iml" />
+      <module fileurl="file://C:\Users\jdjvc\AndroidStudioProjects\PrinteDfirm\.idea\printedfirm.iml" filepath="C:\Users\jdjvc\AndroidStudioProjects\PrinteDfirm\.idea\printedfirm.iml" />
     </modules>
   </component>
 </project>
