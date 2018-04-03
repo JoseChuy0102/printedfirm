@@ -48,6 +48,7 @@ public class verProductos extends AppCompatActivity implements Response.ErrorLis
 
     private void cargarProductos()
     {
+        /*En el caso del get estoy creando un stringrequest*/
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_GET, this, this);
         stringRequest.setRetryPolicy(new DefaultRetryPolicy(6000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT ));
         Volley.newRequestQueue(this).add(stringRequest);
@@ -63,6 +64,9 @@ public class verProductos extends AppCompatActivity implements Response.ErrorLis
     @Override
     public void onResponse(String response)
     {
+        /*En el response manejo la lógica. Me traigo el arreglo de la ruta que hay en el controlador y saco todos los elementos JSON
+        * y después consigo los valores de sus propiedades y las asigno a este objeto aquí e igualmente lo meto a la lista pra mostrarlos*/
+
         try {
             JSONArray array = new JSONArray(response);
 

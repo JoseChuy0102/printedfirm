@@ -30,6 +30,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intent = new Intent(this, verProductos.class);
                 startActivity(intent);
             }break;
+            case R.id.btnnav:
+            {
+                Intent intent = new Intent(this, Navigacion.class);
+                startActivity(intent);
+            }break;
         }
     }
 }
