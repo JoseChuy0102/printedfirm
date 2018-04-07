@@ -4,12 +4,10 @@
     android:layout_height="match_parent"
     tools:context="josevillarreal.printedfirm.Fragments.ServiciosFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Este fragment es de los servicios xd" />
-
+        android:layout_height="wrap_content"
+        android:id="@+id/serviciosRecycler"/>
 
 
 </FrameLayout>

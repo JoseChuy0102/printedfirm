@@ -9,8 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -25,19 +23,20 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import josevillarreal.printedfirm.Modelos.Servicio;
-import josevillarreal.printedfirm.Modelos.ServicioAdapter;
+import josevillarreal.printedfirm.Modelos.Producto;
+import josevillarreal.printedfirm.Modelos.ProductoAdapter;
 import josevillarreal.printedfirm.R;
+import josevillarreal.printedfirm.verProductos;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link ServiciosFragment.OnFragmentInteractionListener} interface
+ * {@link ProductosFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link ServiciosFragment#newInstance} factory method to
+ * Use the {@link ProductosFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ServiciosFragment extends Fragment implements Response.ErrorListener, Response.Listener<String> {
+public class ProductosFragment extends Fragment implements Response.ErrorListener, Response.Listener<String> {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -50,11 +49,11 @@ public class ServiciosFragment extends Fragment implements Response.ErrorListene
     private OnFragmentInteractionListener mListener;
 
     RecyclerView recyclerView;
-    ArrayList<Servicio> listaServicios;
-    final String URL_GET = "http://printedfirm.uttsistemas.com/mostrarServicios";
+    ArrayList<Producto> listaProductos;
+    final String URL_GET = "http://printedfirm.uttsistemas.com/mostrarProductos";
 
 
-    public ServiciosFragment() {
+    public ProductosFragment() {
         // Required empty public constructor
     }
 
@@ -64,11 +63,11 @@ public class ServiciosFragment extends Fragment implements Response.ErrorListene
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ServiciosFragment.
+     * @return A new instance of fragment ProductosFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ServiciosFragment newInstance(String param1, String param2) {
-        ServiciosFragment fragment = new ServiciosFragment();
+    public static ProductosFragment newInstance(String param1, String param2) {
+        ProductosFragment fragment = new ProductosFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -88,28 +87,18 @@ public class ServiciosFragment extends Fragment implements Response.ErrorListene
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View vista = inflater.inflate(R.layout.fragment_servicios, container, false);
+        /*Creamos una vista y esa vista llevará el fragmento*/
+
+        View vista = inflater.inflate(R.layout.fragment_productos, container, false);
 
         /*A través del objeto view, accedemos a la propiedades. En este caso el recycler que tenemos ahí metido*/
-        listaServicios = new ArrayList<>();
-        recyclerView = (RecyclerView) vista.findViewById(R.id.serviciosRecycler);
+        listaProductos = new ArrayList<>();
+        recyclerView = (RecyclerView) vista.findViewById(R.id.productosRecycler);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        cargarServicios();
-
-
-
+        cargarProductos();
 
         return vista;
-
-    }
-
-    private void cargarServicios()
-    {
-        /*En el caso del get estoy creando un stringrequest*/
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_GET, this, this);
-        stringRequest.setRetryPolicy(new DefaultRetryPolicy(6000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT ));
-        Volley.newRequestQueue(getContext()).add(stringRequest);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -151,6 +140,14 @@ public class ServiciosFragment extends Fragment implements Response.ErrorListene
         void onFragmentInteraction(Uri uri);
     }
 
+    private void cargarProductos()
+    {
+        /*En el caso del get estoy creando un stringrequest*/
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_GET, this, this);
+        stringRequest.setRetryPolicy(new DefaultRetryPolicy(6000, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT ));
+        Volley.newRequestQueue(getContext()).add(stringRequest);
+    }
+
     @Override
     public void onErrorResponse(VolleyError error)
     {
@@ -161,6 +158,9 @@ public class ServiciosFragment extends Fragment implements Response.ErrorListene
     @Override
     public void onResponse(String response)
     {
+        /*En el response manejo la lógica. Me traigo el arreglo de la ruta que hay en el controlador y saco todos los elementos JSON
+        * y después consigo los valores de sus propiedades y las asigno a este objeto aquí e igualmente lo meto a la lista pra mostrarlos*/
+
         try {
             JSONArray array = new JSONArray(response);
 
@@ -168,16 +168,18 @@ public class ServiciosFragment extends Fragment implements Response.ErrorListene
             {
                 JSONObject producto = array.getJSONObject(i);
 
-                listaServicios.add(new Servicio(producto.getInt("idservicios"),
-                        producto.getString("nombre_servicio"),
-                        producto.getString("descripcion_servicio"),
-                        producto.getString("imagen_servicio")
+                listaProductos.add(new Producto(producto.getInt("idproductos"),
+                        producto.getString("nombre_producto"),
+                        producto.getString("descripcion_producto"),
+                        producto.getDouble("precio_unitario"),
+                        producto.getString("imagen_producto")
                 ));
             }
-            ServicioAdapter adapter = new ServicioAdapter(getContext(), listaServicios);
+            ProductoAdapter adapter = new ProductoAdapter(getContext(), listaProductos);
             recyclerView.setAdapter(adapter);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
+
 }

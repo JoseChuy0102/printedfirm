@@ -16,10 +16,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import josevillarreal.printedfirm.Fragments.DashFragment;
+import josevillarreal.printedfirm.Fragments.ProductosFragment;
 import josevillarreal.printedfirm.Fragments.ServiciosFragment;
 
 public class Navigacion extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, ServiciosFragment.OnFragmentInteractionListener, DashFragment.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener, ServiciosFragment.OnFragmentInteractionListener, DashFragment.OnFragmentInteractionListener, ProductosFragment.OnFragmentInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,6 +105,12 @@ public class Navigacion extends AppCompatActivity
 
                 getSupportFragmentManager().beginTransaction().replace(R.id.content_navigacion, mifragment).commit();
             }break;
+            case R.id.nav_productos:
+            {
+                mifragment = new ProductosFragment();
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_navigacion, mifragment).commit();
+            }
             default:
                 break;
         }

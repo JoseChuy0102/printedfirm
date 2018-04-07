@@ -40,24 +40,17 @@
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Small"
             />
 
-        <TextView
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/textViewPrecio"
             android:layout_below="@id/textViewDescripcion"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
             android:layout_toRightOf="@id/imageView"
-            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
-            android:text="$666.00 MXN"
-            android:textStyle="bold"
+            android:text=""
+            android:layout_marginTop="10dp"
+            android:background="#54f431"
+            android:id="@+id/btnadd"
             />
 
-
-
     </RelativeLayout>
-
-
-
 
 </LinearLayout>

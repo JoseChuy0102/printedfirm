@@ -40,11 +40,4 @@ public class Producto
         this.descripcionProducto = descripcionProducto;
         this.imagenProducto = imagenProducto;
     }
-
-
-
-
-
-
-
 }
