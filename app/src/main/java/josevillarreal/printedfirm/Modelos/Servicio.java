@@ -19,7 +19,8 @@ public class Servicio
     }
 
 
-    public int getIdServicio() {
+    public int getIdServicio()
+    {
         return idServicio;
     }
 

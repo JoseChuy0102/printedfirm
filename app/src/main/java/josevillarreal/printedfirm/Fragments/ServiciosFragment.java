@@ -98,8 +98,6 @@ public class ServiciosFragment extends Fragment implements Response.ErrorListene
         cargarServicios();
 
 
-
-
         return vista;
 
     }
@@ -136,6 +134,8 @@ public class ServiciosFragment extends Fragment implements Response.ErrorListene
         mListener = null;
     }
 
+
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -168,7 +168,7 @@ public class ServiciosFragment extends Fragment implements Response.ErrorListene
             {
                 JSONObject producto = array.getJSONObject(i);
 
-                listaServicios.add(new Servicio(producto.getInt("idservicios"),
+                listaServicios.add(new Servicio(producto.getInt("id"),
                         producto.getString("nombre_servicio"),
                         producto.getString("descripcion_servicio"),
                         producto.getString("imagen_servicio")
